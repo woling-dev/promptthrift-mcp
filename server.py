@@ -59,10 +59,12 @@ DEFAULT_KEEP_RECENT_TURNS = 4
 DEFAULT_OLLAMA_MODEL = "gemma4:e4b"
 DEFAULT_OLLAMA_URL = "http://localhost:11434"
 COMPRESSION_SYSTEM_PROMPT = (
-    "You are a conversation compressor. Summarize the following conversation "
-    "history into a concise summary that preserves all key facts, decisions, "
-    "context, and user preferences. Output ONLY the summary, no preamble. "
-    "Keep it under {max_tokens} tokens. Use the same language as the original."
+    "You are a conversation compressor. Your ONLY job is to make the text SHORTER. "
+    "Compress the conversation into bullet points. Keep key facts, decisions, "
+    "technical details, and action items. Remove all greetings, filler, "
+    "explanations, and formatting. No markdown headers, no bold, no structured output. "
+    "Just plain bullet points. Target: under {max_tokens} tokens. "
+    "Use the same language as the original. Output ONLY the compressed bullets."
 )
 
 # Patterns that should be stripped from compressed output (anti prompt-injection)
@@ -282,6 +284,7 @@ async def compress_with_ollama(
             {"role": "user", "content": f"Compress this conversation:\n\n{conv_text}"},
         ],
         "stream": False,
+        "think": False,  # Disable thinking mode for Gemma 4 — get output in content
         "options": {"num_predict": max_tokens * 4},  # chars ≈ tokens * 4
     }
 
@@ -290,7 +293,9 @@ async def compress_with_ollama(
             resp = await client.post(f"{ollama_url}/api/chat", json=payload)
             if resp.status_code == 200:
                 data = resp.json()
-                summary = data.get("message", {}).get("content", "")
+                msg = data.get("message", {})
+                # Gemma 4 thinking models put output in 'thinking' when think=True
+                summary = msg.get("content", "") or msg.get("thinking", "")
                 if summary:
                     return sanitize_compressed_output(summary)
     except Exception as e:

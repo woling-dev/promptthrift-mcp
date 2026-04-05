@@ -195,9 +195,23 @@ Total: ~1,750 tokens per call (73% saved!)
 | Mode | Method | Quality | Speed | Cost |
 |------|--------|---------|-------|------|
 | Heuristic | Rule-based extraction | Good (50-60% reduction) | Instant | Free |
-| LLM (Gemma 4) | AI-powered understanding | Excellent (70-90% reduction) | ~2s | Free (local) |
+| LLM (Gemma 4) | AI-powered understanding | Excellent (70-90% reduction) | ~10-15s | Free (local) |
 
 PromptThrift automatically uses the best available method. Install Ollama + Gemma 4 for maximum compression quality.
+
+### When Does Compression Shine?
+
+Compression effectiveness scales with conversation length and redundancy:
+
+| Conversation Length | Typical Reduction | Best For |
+|---|---|---|
+| Short (< 5 turns, mostly technical) | 15-25% | Minimal savings — keep as-is |
+| Medium (10-20 turns, mixed chat) | 50-70% | Sweet spot — clear cost reduction |
+| Long (30+ turns, debugging/iterating) | **70-90%** | Massive savings — compress early and often |
+
+**Why?** Short, dense conversations have little filler to remove. Longer conversations accumulate greetings, repeated context, exploratory dead-ends, and verbose explanations — exactly what the compressor strips away. A 30-turn debugging session with code snippets, back-and-forth troubleshooting, and final resolution compresses dramatically because only the conclusion and key decisions matter for future context.
+
+**Rule of thumb:** Start compressing after 8-10 turns for best results.
 
 ## Environment Variables
 
