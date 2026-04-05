@@ -57,7 +57,7 @@ For smarter AI-powered compression (free, runs locally):
 
 ```bash
 # Install Ollama: https://ollama.com
-ollama pull gemma4:4b
+ollama pull gemma4:e4b
 ```
 
 PromptThrift auto-detects Ollama. If running → uses Gemma 4 for compression. If not → falls back to fast heuristic compression. Zero config needed.
@@ -94,33 +94,45 @@ Add to your MCP settings:
 
 ## Real-World Example
 
-A customer service bot handling olive oil product Q&A:
+An AI coding assistant debugging a complex issue over 30+ turns:
 
 **Before compression (sent every API call):**
 ```
-Q: Can I drink olive oil straight?
-A: Yes! Our extra virgin is drinkable. We have 500ml and 1000ml.
-Q: What's the difference between PET and glass bottles?
-A: Glass is our premium line. 1000ml PET is for heavy cooking families.
-Q: Which one do you recommend?
-A: For drinking: Extra Virgin 500ml. For salads/cooking: 1000ml.
-Q: I also do a lot of frying.
-A: For high-heat frying, our Pure Olive Oil 500ml (230°C smoke point).
+User: My Next.js app throws a hydration error on the /dashboard page.
+Asst: That usually means server and client HTML don't match. Can you share the component?
+User: [pastes 50 lines of DashboardLayout.tsx]
+Asst: I see the issue — you're using `new Date()` directly in render, which differs
+      between server and client. Let me also check your data fetching...
+User: I also get a warning about useEffect running twice.
+Asst: That's React 18 Strict Mode. Not related to hydration. Let me trace the real bug...
+User: Wait, there's also a flash of unstyled content on first load.
+Asst: That's a separate CSS loading order issue. Let me address both...
+      [... 25 more turns of debugging, trying fixes, checking logs ...]
+User: OK it's fixed now! But I want to add dark mode next.
+Asst: Great! For dark mode with Next.js + Tailwind, here are three approaches...
 ```
-~250 tokens × every subsequent API call
+~8,500 tokens after 30 turns — **and growing every single API call**
 
 **After Gemma 4 compression:**
 ```
 [Compressed history]
-Customer asks about olive oil products. Key facts:
-- Extra virgin (500ml glass) for drinking, single-origin available
-- 1000ml PET for cooking/salads (lower grade, family-size)
-- Pure olive oil 500ml for high-heat frying (230°C smoke point)
+Resolved Next.js hydration error in DashboardLayout.tsx caused by
+Date() in render (fixed with useEffect). Unrelated: React 18 Strict Mode
+double-fire (expected), CSS flash (fixed via loading order).
+User now wants to add dark mode to Next.js + Tailwind app.
 [End compressed history]
-```
-~80 tokens — **68% saved on every call after this point**
 
-With 100 customers/day averaging 30 turns each on Claude Sonnet: **~$14/month saved** from one bot.
+[Recent turns preserved — last 4 turns intact]
+```
+~1,200 tokens — **86% saved on every subsequent call**
+
+**Cost impact at scale (Claude Sonnet @ $3/MTok):**
+| Scenario | Without PromptThrift | With PromptThrift | Monthly Savings |
+|----------|---------------------|-------------------|-----------------|
+| 1 dev, 20 sessions/day | $5.10/mo | $0.72/mo | **$4.38** |
+| Team of 10 devs | $51/mo | $7.20/mo | **$43.80** |
+| Customer service bot (500 chats/day) | $255/mo | $36/mo | **$219** |
+| AI agent platform (5K sessions/day) | $2,550/mo | $357/mo | **$2,193** |
 
 ## Pinned Facts (Never-Compress List)
 
@@ -191,7 +203,7 @@ PromptThrift automatically uses the best available method. Install Ollama + Gemm
 
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
-| `PROMPTTHRIFT_OLLAMA_MODEL` | No | `gemma4:4b` | Ollama model for LLM compression |
+| `PROMPTTHRIFT_OLLAMA_MODEL` | No | `gemma4:e4b` | Ollama model for LLM compression |
 | `PROMPTTHRIFT_OLLAMA_URL` | No | `http://localhost:11434` | Ollama API endpoint |
 | `PROMPTTHRIFT_DEFAULT_MODEL` | No | `claude-sonnet-4.6` | Default model for cost estimates |
 

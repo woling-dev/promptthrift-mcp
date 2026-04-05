@@ -56,7 +56,7 @@ SERVER_NAME = "promptthrift_mcp"
 SERVER_VERSION = "0.2.0"
 DEFAULT_MAX_HISTORY_TOKENS = 4000
 DEFAULT_KEEP_RECENT_TURNS = 4
-DEFAULT_OLLAMA_MODEL = "gemma4:4b"
+DEFAULT_OLLAMA_MODEL = "gemma4:e4b"
 DEFAULT_OLLAMA_URL = "http://localhost:11434"
 COMPRESSION_SYSTEM_PROMPT = (
     "You are a conversation compressor. Summarize the following conversation "
