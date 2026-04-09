@@ -3,10 +3,16 @@
 > Cut 70-90% of your LLM API costs with intelligent conversation compression.
 > Now with **Gemma 4 local compression** — smarter summaries, zero API cost.
 
+<a href="https://glama.ai/mcp/servers/@woling-dev/promptthrift-mcp">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/@woling-dev/promptthrift-mcp/badge" alt="PromptThrift MCP server" />
+</a>
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://python.org)
 [![MCP Compatible](https://img.shields.io/badge/MCP-Compatible-purple.svg)](https://modelcontextprotocol.io)
 [![Gemma 4](https://img.shields.io/badge/Gemma_4-Supported-orange.svg)](https://deepmind.google/models/gemma/gemma-4/)
+
+⭐ **If this saves you money, star this repo!** ⭐
 
 ## The Problem
 
@@ -45,10 +51,16 @@ PromptThrift is an MCP server with 4 tools to slash your API costs:
 
 ### Install
 
+**Option A: pip install (recommended)**
+```bash
+pip install git+https://github.com/woling-dev/promptthrift-mcp.git
+```
+
+**Option B: clone and install**
 ```bash
 git clone https://github.com/woling-dev/promptthrift-mcp.git
 cd promptthrift-mcp
-pip install -r requirements.txt
+pip install -e .
 ```
 
 ### Optional: Enable Gemma 4 Compression

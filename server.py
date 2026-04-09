@@ -890,6 +890,11 @@ async def promptthrift_pin_facts(params: PinFactsInput) -> str:
 # ---------------------------------------------------------------------------
 # Entry point
 # ---------------------------------------------------------------------------
-if __name__ == "__main__":
+def main():
+    """Entry point for the MCP server."""
     logger.info("Starting PromptThrift MCP Server v%s", SERVER_VERSION)
     mcp.run()
+
+
+if __name__ == "__main__":
+    main()
