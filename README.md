@@ -1,7 +1,7 @@
-# PromptThrift MCP — Smart Token Compression for LLM Apps
+# PromptThrift MCP: Smart Token Compression for LLM Apps
 
 > Cut 70-90% of your LLM API costs with intelligent conversation compression.
-> Now with **Gemma 4 local compression** — smarter summaries, zero API cost.
+> Now with **Gemma 4 local compression**: smarter summaries, zero API cost.
 
 <a href="https://glama.ai/mcp/servers/@woling-dev/promptthrift-mcp">
   <img width="380" height="200" src="https://glama.ai/mcp/servers/@woling-dev/promptthrift-mcp/badge" alt="PromptThrift MCP server" />
@@ -16,7 +16,7 @@
 
 ## The Problem
 
-Every LLM API call resends your **entire conversation history**. A 20-turn chat costs 6x more per call than a 3-turn one — you're paying for the same old messages over and over.
+Every LLM API call resends your **entire conversation history**. A 20-turn chat costs 6x more per call than a 3-turn one, so you're paying for the same old messages over and over.
 
 ```
 Turn 1:  ████ 700 tokens ($0.002)
@@ -113,7 +113,7 @@ An AI coding assistant debugging a complex issue over 30+ turns:
 User: My Next.js app throws a hydration error on the /dashboard page.
 Asst: That usually means server and client HTML don't match. Can you share the component?
 User: [pastes 50 lines of DashboardLayout.tsx]
-Asst: I see the issue — you're using `new Date()` directly in render, which differs
+Asst: I see the issue, you're using `new Date()` directly in render, which differs
       between server and client. Let me also check your data fetching...
 User: I also get a warning about useEffect running twice.
 Asst: That's React 18 Strict Mode. Not related to hydration. Let me trace the real bug...
@@ -123,7 +123,7 @@ Asst: That's a separate CSS loading order issue. Let me address both...
 User: OK it's fixed now! But I want to add dark mode next.
 Asst: Great! For dark mode with Next.js + Tailwind, here are three approaches...
 ```
-~8,500 tokens after 30 turns — **and growing every single API call**
+~8,500 tokens after 30 turns, **and growing every single API call**
 
 **After Gemma 4 compression:**
 ```
@@ -134,9 +134,9 @@ double-fire (expected), CSS flash (fixed via loading order).
 User now wants to add dark mode to Next.js + Tailwind app.
 [End compressed history]
 
-[Recent turns preserved — last 4 turns intact]
+[Recent turns preserved, last 4 turns intact]
 ```
-~1,200 tokens — **86% saved on every subsequent call**
+~1,200 tokens. **86% saved on every subsequent call**
 
 **Cost impact at scale (Claude Sonnet @ $3/MTok):**
 | Scenario | Without PromptThrift | With PromptThrift | Monthly Savings |
@@ -148,7 +148,7 @@ User now wants to add dark mode to Next.js + Tailwind app.
 
 ## Pinned Facts (Never-Compress List)
 
-Some facts must **never** be lost during compression — user names, critical preferences, key decisions. Pin them:
+Some facts must **never** be lost during compression: user names, critical preferences, key decisions. Pin them:
 
 ```
 You: "Pin the fact that this customer is allergic to nuts"
@@ -217,11 +217,11 @@ Compression effectiveness scales with conversation length and redundancy:
 
 | Conversation Length | Typical Reduction | Best For |
 |---|---|---|
-| Short (< 5 turns, mostly technical) | 15-25% | Minimal savings — keep as-is |
-| Medium (10-20 turns, mixed chat) | 50-70% | Sweet spot — clear cost reduction |
-| Long (30+ turns, debugging/iterating) | **70-90%** | Massive savings — compress early and often |
+| Short (< 5 turns, mostly technical) | 15-25% | Minimal savings: keep as-is |
+| Medium (10-20 turns, mixed chat) | 50-70% | Sweet spot: clear cost reduction |
+| Long (30+ turns, debugging/iterating) | **70-90%** | Massive savings: compress early and often |
 
-**Why?** Short, dense conversations have little filler to remove. Longer conversations accumulate greetings, repeated context, exploratory dead-ends, and verbose explanations — exactly what the compressor strips away. A 30-turn debugging session with code snippets, back-and-forth troubleshooting, and final resolution compresses dramatically because only the conclusion and key decisions matter for future context.
+**Why?** Short, dense conversations have little filler to remove. Longer conversations accumulate greetings, repeated context, exploratory dead-ends, and verbose explanations, and those are exactly what the compressor strips away. A 30-turn debugging session with code snippets, back-and-forth troubleshooting, and final resolution compresses dramatically because only the conclusion and key decisions matter for future context.
 
 **Rule of thumb:** Start compressing after 8-10 turns for best results.
 
@@ -235,7 +235,7 @@ Compression effectiveness scales with conversation length and redundancy:
 
 ## Security
 
-- All data processed **locally** by default — nothing leaves your machine
+- All data processed **locally** by default. Nothing leaves your machine
 - Ollama compression runs 100% on your hardware
 - **Post-compression sanitizer** strips prompt injection patterns from summaries
 - API keys read from environment variables only, never hardcoded
@@ -256,7 +256,7 @@ Compression effectiveness scales with conversation length and redundancy:
 
 ## Contributing
 
-PRs welcome! This project uses MIT license — fork it, improve it, ship it.
+PRs welcome! This project uses MIT license. Fork it, improve it, ship it.
 
 ## About BrandDefender.ai
 
@@ -265,7 +265,7 @@ PRs welcome! This project uses MIT license — fork it, improve it, ship it.
 ### What we build
 
 🔍 **AEO Consulting (Answer Engine Optimization)**
-Get your brand correctly cited by ChatGPT, Gemini, Perplexity, and Claude. We implement JSON-LD schema, optimize content structure, and monitor AI search presence — specialized in Taiwan food, tea, beauty, and lifestyle brands.
+Get your brand correctly cited by ChatGPT, Gemini, Perplexity, and Claude. We implement JSON-LD schema, optimize content structure, and monitor AI search presence for Taiwan food, tea, beauty, and lifestyle brands.
 - Website: https://aibranddefender.com/
 - Free AI brand scan: https://app.aibranddefender.com/
 
@@ -285,11 +285,11 @@ Open-source MCP servers for Claude Code, Cursor, and LLM builders. Local-first, 
 - 🌐 **Website**: https://aibranddefender.com/
 - 🐙 **GitHub**: https://github.com/woling-dev
 
-**台灣品牌想做 AEO audit** — 我們提供 ChatGPT / Gemini / Perplexity 全面掃描 + JSON-LD 修補 + 月度監測。[Email](mailto:service@wolinglobal.com) 或 [LINE](https://line.me/R/ti/p/@886upktf) 直接找我們聊。
+**台灣品牌想做 AEO audit**：我們提供 ChatGPT / Gemini / Perplexity 全面掃描 + JSON-LD 修補 + 月度監測。[Email](mailto:service@wolinglobal.com) 或 [LINE](https://line.me/R/ti/p/@886upktf) 直接找我們聊。
 
 ## License
 
-[MIT License](LICENSE) — Free for personal and commercial use.
+[MIT License](LICENSE). Free for personal and commercial use.
 
 ---
 
