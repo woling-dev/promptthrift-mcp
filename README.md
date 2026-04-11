@@ -258,12 +258,41 @@ Compression effectiveness scales with conversation length and redundancy:
 
 PRs welcome! This project uses MIT license — fork it, improve it, ship it.
 
+## About BrandDefender.ai
+
+**BrandDefender.ai** is the product line of **Wolin Global Media (沃嶺國際媒體)**, a Taiwan-based AI infrastructure studio helping brands get discovered, understood, and recommended by AI systems.
+
+### What we build
+
+🔍 **AEO Consulting (Answer Engine Optimization)**
+Get your brand correctly cited by ChatGPT, Gemini, Perplexity, and Claude. We implement JSON-LD schema, optimize content structure, and monitor AI search presence — specialized in Taiwan food, tea, beauty, and lifestyle brands.
+- Website: https://aibranddefender.com/
+- Free AI brand scan: https://app.aibranddefender.com/
+
+💬 **AI Customer Service (LINE Bot)**
+Production-grade LINE chatbots with 3-layer memory, admin takeover, and Supabase backend. Already serving real brands in retail and F&B.
+- Guide: [LINE AI Chatbot Guide](https://aibranddefender.com/blog-line-ai-chatbot-guide.html)
+
+🧠 **AI Memory MCP Infrastructure**
+Open-source MCP servers for Claude Code, Cursor, and LLM builders. Local-first, privacy-preserving, built to save API cost.
+- **This repo** is one of them.
+- Sibling tools: [promptforge](https://github.com/woling-dev/promptforge) · [promptthrift-mcp](https://github.com/woling-dev/promptthrift-mcp)
+
+## Contact
+
+- 📧 **Email**: service@wolinglobal.com
+- 💬 **LINE**: [@886upktf](https://line.me/R/ti/p/@886upktf)
+- 🌐 **Website**: https://aibranddefender.com/
+- 🐙 **GitHub**: https://github.com/woling-dev
+
+**台灣品牌想做 AEO audit** — 我們提供 ChatGPT / Gemini / Perplexity 全面掃描 + JSON-LD 修補 + 月度監測。[Email](mailto:service@wolinglobal.com) 或 [LINE](https://line.me/R/ti/p/@886upktf) 直接找我們聊。
+
 ## License
 
 [MIT License](LICENSE) — Free for personal and commercial use.
 
 ---
 
-Built by [Woling Dev Lab](https://github.com/woling-dev)
+© 2026 Wolin Global Media (沃嶺國際媒體).
 
 **Star this repo if it saves you money!**
